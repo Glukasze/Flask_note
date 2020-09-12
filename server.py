@@ -1,24 +1,30 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
-ideas = ["eat", "sleep", "play"]
+notes = ["eat", "sleep", "play"]
+edits_counter = 0
 
-@app.route('/')
+
+@app.route('/', methods=["GET", "POST"])
 def base():
-    return render_template("base.html", ideas = ideas)
+    if request.method == "POST":
+        notes.remove(request.form["delete_button"])
+        global edits_counter
+        edits_counter += 1
+        return redirect("/")
+    return render_template("base.html", notes = notes, edits_counter = edits_counter)
 
-@app.route('/add')
-def add():
-    return render_template("add.html")
+@app.route("/note", methods=["GET", "POST"])
+def note():
+    if request.method == "POST":
+        global edits_counter
+        edits_counter += 1
+        notes.append(request.form["edit_note"])
+        return redirect("/")
 
-@app.route('/delete')
-def delete():
-    return render_template("delete.html", ideas = ideas)
+    return render_template("note.html")
 
-@app.route('/edit')
-def edit():
-    return render_template("edit.html", ideas = ideas)
 
 
 if __name__ == '__main__':
