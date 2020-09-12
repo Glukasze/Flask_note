@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Note 1</title>
+    <title>Note</title>
 </head>
 <body>
-<h1>Ideas</h1>
+<h1>My ideas</h1>
 <ul>
     {% for idea in ideas %}
-    <li>{{ idea}}</li>
+    <li>{{idea}} <button name="submit_delete" type="submit" formmethod="post">&#9747;</button> </li>
     {% endfor %}
 </ul>
 <div id="options">
