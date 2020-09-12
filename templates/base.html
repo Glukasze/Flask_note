@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Note</title>
+    <title>My notes</title>
 </head>
 <body>
-<h1>My ideas</h1>
-<ul>
-    {% for idea in ideas %}
-    <li>{{idea}} <button name="submit_delete" type="submit" formmethod="post">&#9747;</button> </li>
+<h1>My notes</h1>
+{% if ideas == [] %}
+<p>There are currently no ideas saved</p>
+{% else %}
+    {% for note in notes %}
+        <form method="post" action="">
+        <label>{{ note }}</label>
+        <button id="button" name="delete_button" value="{{ note }}">&#9747;</button>
+        </form>
     {% endfor %}
-</ul>
-<div id="options">
-    <form>
-        <button><a href="/add">Add idea</a></button>
-        <button><a href="/edit">Edit idea</a></button>
-        <button><a href="/delete">Delete idea</a></button>
-    </form>
-</div>
+    {% endif %}
+<p><small>Edits: {{ edits_counter }}</small></p>
+<p><a href="/note">Add a note</a></p>
 </body>
 </html>
