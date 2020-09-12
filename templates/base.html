@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Note</title>
+</head>
+<body>
+<h1>Ideas</h1>
+<ul>
+    {% for idea in ideas %}
+    <li>{{ idea}}</li>
+    {% endfor %}
+</ul>
+<div id="options">
+    <form>
+        <button><a href="/add">Add idea</a></button>
+        <button><a href="/edit">Edit idea</a></button>
+        <button><a href="/delete">Delete idea</a></button>
+    </form>
+</div>
+</body>
+</html>
